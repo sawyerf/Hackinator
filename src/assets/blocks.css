@@ -1,5 +1,5 @@
 .block {
-    margin: 10px;
+    flex: 1;
 }
 
 div.block-node {
@@ -9,8 +9,10 @@ div.block-node {
     border: solid 5px black;
     padding: 23px;
     width: 14ch;
-    height: 2ex;
+    max-height: 2ex;
+    height: 3ex;
     border-radius: 10px;
+    margin: 50px;
 }
 
 p.block-node {
@@ -18,11 +20,21 @@ p.block-node {
     text-align: center;
 }
 
-div.block-type-classic {
+div.block-type-master {
+    background: red;
+}
+
+p.block-type-master {
+    color: white;
+    font-size: 20px;
+    font-style: bold;
+}
+
+div.block-type-switch {
     background: white;
 }
 
-p.block-type-classic {
+p.block-type-switch {
     color: black;
     font-size: 20px;
     font-style: bold;
@@ -41,14 +53,49 @@ div.block-text {
     align-content: center;
     background-color: lightgrey;
     width: 25ch;
+    height: auto;
     border: solid 5px black;
     border-radius: 10px;
 }
 
 p.block-text {
-    flex: 1;
     background-color: white;
     padding: 1.9ex;
     margin: 1ex;
     text-align: center;
+}
+
+div.block-url {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    background-color: lightgrey;
+    width: 25ch;
+    height: auto;
+    border: solid 5px black;
+    border-radius: 10px;
+}
+
+a.block-url {
+    flex: 1;
+    text-align: center;
+    background-color: white;
+    padding: 1.9ex;
+    margin: 1ex;
+    width: calc(100% - 2ex - 1.9ex * 2);
+    height: 2ex;
+    text-align: center;
+}
+
+.parent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+}
+
+.child {
+    display: flex;
+    flex-direction: row;
 }

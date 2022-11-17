@@ -5,11 +5,14 @@ interface TextProps {
 }
 
 const TextBlock = (props: TextProps) => {
+    const copyLine = (line: string) => {
+        navigator.clipboard.writeText(line);
+    }
     return (
         <div className='block block-text'>
             {
                 props.text.map(line => (
-                        <p className='block-text'> { line } </p>
+                        <p className='block-text' onClick={() => copyLine(line)} > { line } </p>
                 ))
             }
         </div>
