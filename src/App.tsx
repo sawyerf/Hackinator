@@ -38,13 +38,17 @@ const App = () => {
 
   const parseUrl = (block: BlockUrlType): JSX.Element => {
     return (
-      <UrlBlock urls={block.urls} />
+      <div className='parent'>
+        <UrlBlock urls={block.urls} />
+      </div>
     )
   }
 
   const parseText = (block: BlockTextType): JSX.Element => {
     return (
-      <TextBlock text={block.text} />
+      <div className='parent'>
+        <TextBlock text={block.text} />
+      </div >
     )
   }
 
@@ -64,7 +68,11 @@ const App = () => {
   const data: BlockNodeType = diagramData as BlockNodeType;
   return (
     <div className="App">
-      {typeIdentifier(data)}
+      <div className='parent'>
+        <div className='child'>
+          {typeIdentifier(data)}
+        </div>
+      </div>
     </div>
   );
 }

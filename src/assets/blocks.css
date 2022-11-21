@@ -12,7 +12,7 @@ div.block-node {
     max-height: 2ex;
     height: 3ex;
     border-radius: 10px;
-    margin: 50px;
+    /* margin: 50px; */
 }
 
 p.block-node {
@@ -53,7 +53,8 @@ div.block-text {
     align-content: center;
     background-color: lightgrey;
     width: 25ch;
-    height: auto;
+    /* height: auto; */
+    min-height: 3em;
     border: solid 5px black;
     border-radius: 10px;
 }
@@ -63,6 +64,17 @@ p.block-text {
     padding: 1.9ex;
     margin: 1ex;
     text-align: center;
+    height: 1em;
+    max-height: 1em;
+
+    max-lines: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    word-wrap: break-word;
+    -webkit-line-clamp: 1;
+            line-clamp: 1; 
+    -webkit-box-orient: vertical;
 }
 
 div.block-url {
