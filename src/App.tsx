@@ -1,80 +1,20 @@
-import React from 'react';
-import NodeBlock from './components/NodeBlock';
-import TextBlock from './components/TextBlock';
-import UrlBlock from './components/UrlBlock';
+import React, { useState } from 'react';
 import diagramData from './data/diagram.json'
+import { BlockNodeType, BlockType } from './data/diagram';
+import Diagram from './components/Diagram';
+import ListNextNode from './components/ListNextNode';
 
-type BlockNodeType = {
-  type: string;
-  name: string;
-  is: string;
-  choice: (BlockTextType | BlockNodeType | BlockUrlType)[]
-}
-
-type BlockTextType = {
-  type: string;
-  text: string[]
-}
-
-type BlockUrlType = {
-  type: string;
-  urls: { text: string, url: string }[]
-}
 
 const App = () => {
+	const data: BlockNodeType = diagramData as BlockNodeType;
+  const [ node,  setNode ] = useState<BlockNodeType>(data)
 
-  const typeIdentifier = (block: BlockTextType | BlockNodeType | BlockUrlType): JSX.Element => {
-    console.log('block', block)
-    if (block.type === 'node') {
-      return parseNode(block as BlockNodeType);
-    } else if (block.type === 'text') {
-      return parseText(block as BlockTextType)
-    } else if (block.type === 'url') {
-      return parseUrl(block as BlockUrlType)
-    } else {
-      return (<></>)
-    }
-  }
-
-  const parseUrl = (block: BlockUrlType): JSX.Element => {
-    return (
-      <div className='parent'>
-        <UrlBlock urls={block.urls} />
-      </div>
-    )
-  }
-
-  const parseText = (block: BlockTextType): JSX.Element => {
-    return (
-      <div className='parent'>
-        <TextBlock text={block.text} />
-      </div >
-    )
-  }
-
-  const parseNode = (block: BlockNodeType): JSX.Element => {
-    return (
-      <div className='parent'>
-        <NodeBlock name={block.name} type={block.is} />
-        <div className='child'>
-          {
-            block.choice.map(choice => typeIdentifier(choice))
-          }
-        </div>
-      </div>
-    )
-  }
-
-  const data: BlockNodeType = diagramData as BlockNodeType;
   return (
     <div className="App">
-      <div className='parent'>
-        <div className='child'>
-          {typeIdentifier(data)}
-        </div>
-      </div>
+      <Diagram diagramData={data} setSelect={setNode}/>
+      <ListNextNode nodes={node.choice} setSelect={setNode}/>
     </div>
-  );
+  )
 }
 
 export default App;

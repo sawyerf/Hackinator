@@ -5,7 +5,6 @@ interface UrlProps {
 }
 
 const UrlBlock = (props: UrlProps) => {
-    console.log('url', props.urls)
     return (
         <div className='block block-url'>
             {

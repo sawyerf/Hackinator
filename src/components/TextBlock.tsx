@@ -12,7 +12,10 @@ const TextBlock = (props: TextProps) => {
         <div className='block block-text'>
             {
                 props.text.map(line => (
-                        <p className='block-text' onClick={() => copyLine(line)} > { line } </p>
+                    <li className='block-text'>
+                        <p className='block-text' > { line } </p>
+                        <div className='copy' onClick={() => copyLine(line)} />
+                    </li>
                 ))
             }
         </div>

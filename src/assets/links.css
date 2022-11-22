@@ -16,18 +16,18 @@
     transition: all ease .4s;
 } */
 
-/* .App {
+/* .diagram {
     margin: 20px auto;
     width: 455px;
     min-height: auto;
 } */
 
-.App .child {
+.diagram .child {
     position: relative;
     padding-top: var(--top-size);
 }
 
-.App .parent {
+.diagram .parent {
     position: relative;
     padding: var(--top-size);
     float: left;
@@ -36,8 +36,8 @@
     list-style-type: none;
 }
 
-.App .parent::before,
-.App .parent::after {
+.diagram .parent::before,
+.diagram .parent::after {
     content: '';
     position: absolute;
     top: 0;
@@ -47,38 +47,38 @@
     border-top: var(--link-size) solid var(--link-color);
 }
 
-.App .parent::after {
+.diagram .parent::after {
     left: 50%;
     right: auto;
 
     border-left: var(--link-size) solid var(--link-color);
 }
 
-.App .parent:only-child::after,
-.App .parent:only-child::before {
+.diagram .parent:only-child::after,
+.diagram .parent:only-child::before {
     content: '';
     display: none;
 }
 
-.App .parent:only-child {
+.diagram .parent:only-child {
     padding-top: 0;
 }
 
-.App .parent:first-child::before,
-.App .parent:last-child::after {
+.diagram .parent:first-child::before,
+.diagram .parent:last-child::after {
     border: 0 none;
 }
 
-.App .parent:last-child::before {
+.diagram .parent:last-child::before {
     border-right: var(--link-size) solid var(--link-color);
     border-radius: 0 var(--link-size) 0 0;
 }
 
-.App .parent:first-child::after {
+.diagram .parent:first-child::after {
     border-radius: var(--link-size) 0 0 0;
 }
 
-.App .child .child::before {
+.diagram .child .child::before {
     content: '';
     position: absolute;
     top: 0;
@@ -88,7 +88,7 @@
     height: var(--top-size);
 }
 
-/* .App .parent .block {
+/* .diagram .parent .block {
     display: inline-block;
     padding: 5px 10px;
 
@@ -102,17 +102,17 @@
     font-size: 11px;
 } */
 
-/* .App .parent .block:hover,
-.App .parent .block:hover+.child .parent .block {
+/* .diagram .parent .block:hover,
+.diagram .parent .block:hover+.child .parent .block {
     color: purple;
     background: purple;
     border: var(--link-size) solid purple;
 }
 
-.App .parent .block:hover+.child .parent::after,
-.App .parent .block:hover+.child .parent::before,
-.App .parent .block:hover+.child::before,
-.App .parent .block:hover+.child ul::before {
+.diagram .parent .block:hover+.child .parent::after,
+.diagram .parent .block:hover+.child .parent::before,
+.diagram .parent .block:hover+.child::before,
+.diagram .parent .block:hover+.child ul::before {
     content: '';
     border-color: pink;
 } */
