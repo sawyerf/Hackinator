@@ -1,3 +1,6 @@
+body { 
+  cursor: grab;
+}
 .block {
     flex: 1;
 }
