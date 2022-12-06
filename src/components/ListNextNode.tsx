@@ -14,7 +14,7 @@ const ListNextNode = (props: ListNextNodeProps) => {
 		if (block.type == 'node') {
 			const node = block as BlockNodeType;
 			return (
-				<div style={{ margin: '1em'}} onClick={() => {
+				<div style={{ margin: '1em', flex: 1}} onClick={() => {
 					if (node.choice.filter(choice => choice.type == 'node').length > 0){
 						props.setSelect(node);
 					}
@@ -26,7 +26,7 @@ const ListNextNode = (props: ListNextNodeProps) => {
 	}
 
 	return (
-		<div style={{position: 'fixed', top: 0, right: 0, backgroundColor: 'white'}}>
+		<div className='nextNode'>
 			{
 				props.nodes.map(node => parserNode(node))
 			}

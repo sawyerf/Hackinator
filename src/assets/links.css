@@ -16,11 +16,13 @@
     transition: all ease .4s;
 } */
 
-/* .diagram {
-    margin: 20px auto;
-    width: 455px;
+.diagram {
+    width: 100vw;
+    height: 100vh;
+    background-color: red;
+    overflow: scroll;
     min-height: auto;
-} */
+}
 
 .diagram .child {
     position: relative;
@@ -30,6 +32,7 @@
 .diagram .parent {
     position: relative;
     padding: var(--top-size);
+    padding-bottom: 0px;
     float: left;
 
     text-align: center;

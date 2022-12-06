@@ -1,6 +1,7 @@
 export type BlockNodeType = {
   type: string;
   name: string;
+  description: string;
   is: string;
   choice: (BlockTextType | BlockNodeType | BlockUrlType)[]
 }

@@ -7,7 +7,7 @@ interface NodeProps {
 
 const NodeBlock = (props: NodeProps) => {
     return (
-        <div className={`block block-node block-type-${props.type}`}>
+        <div className={`block block-node block-type-${props.type}`} >
             <p className={`block-node block-type-${props.type}`}>{props.name}</p>
         </div>
     )

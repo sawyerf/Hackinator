@@ -2,16 +2,19 @@
   "type": "node",
   "is": "master",
   "name": "web",
+  "description": "La vie tu sais pas c'est quoi le web",
   "choice": [
     {
       "type": "node",
       "is": "switch",
       "name": "Login",
+      "description": "",
       "choice": [
         {
           "type": "node",
           "is": "vuln",
           "name": "Default Credential",
+          "description": "",
           "choice": [
             {
               "type": "text",
@@ -29,6 +32,7 @@
           "type": "node",
           "is": "vuln",
           "name": "Weak Password",
+          "description": "",
           "choice": [
             {
               "type": "text",
@@ -54,26 +58,45 @@
       "type": "node",
       "is": "switch",
       "name": "Cookies",
+      "description": "",
       "choice": [
         {
           "type": "node",
           "is": "vuln",
           "name": "JWT Token",
+          "description": "",
           "choice": [
             {
               "type": "url",
               "urls": [
                 {
-                  "type": "jwt.io",
-                  "value": "https://jwt.io"
+                  "text": "jwt.io",
+                  "url": "https://jwt.io"
                 },
                 {
-                  "type": "Hacktricks jwt",
-                  "value": "https://book.hacktricks.xyz/pentesting-web/hacking-jwt-json-web-tokens"
+                  "text": "Hacktricks jwt",
+                  "url": "https://book.hacktricks.xyz/pentesting-web/hacking-jwt-json-web-tokens"
                 },
                 {
-                  "type": "Flask unsign (for flask jwt)",
-                  "value": "https://github.com/Paradoxis/Flask-Unsign"
+                  "text": "Flask unsign (for flask jwt)",
+                  "url": "https://github.com/Paradoxis/Flask-Unsign"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "node",
+          "is": "vuln",
+          "name": "Flask",
+          "description": "",
+          "choice": [
+            {
+              "type": "url",
+              "urls": [
+                {
+                  "text": "Hacksheet Flask",
+                  "url": "https://github.com/sawyerf/HackSheet/blob/main/wiki/Web.md#flask"
                 }
               ]
             }
@@ -85,11 +108,13 @@
       "type": "node",
       "is": "switch",
       "name": "Link",
+      "description": "",
       "choice": [
         {
           "type": "node",
           "is": "vuln",
           "name": "LFI / Path Traversal",
+          "description": "",
           "choice": [
             {
               "type": "text",
@@ -108,6 +133,7 @@
           "type": "node",
           "is": "vuln",
           "name": "Open Redirect ",
+          "description": "",
           "choice": [
             {
               "type": "url",
@@ -126,11 +152,13 @@
       "type": "node",
       "is": "switch",
       "name": "Enumerate",
+      "description": "",
       "choice": [
         {
           "type": "node",
           "is": "vuln",
           "name": "Hidden File ",
+          "description": "",
           "choice": [
             {
               "type": "text",
@@ -154,6 +182,7 @@
           "type": "node",
           "is": "vuln",
           "name": "Domain Name",
+          "description": "",
           "choice": [
             {
               "type": "text",
@@ -178,11 +207,13 @@
       "type": "node",
       "is": "switch",
       "name": "POST Request",
+      "description": "",
       "choice": [
         {
           "type": "node",
           "is": "vuln",
           "name": "XXE",
+          "description": "",
           "choice": [
             {
               "type": "text",
@@ -209,6 +240,7 @@
           "type": "node",
           "is": "vuln",
           "name": "Prototype Pollution",
+          "description": "",
           "choice": [
             {
               "type": "text",
@@ -235,6 +267,7 @@
           "type": "node",
           "is": "vuln",
           "name": "STTI",
+          "description": "",
           "choice": [
             {
               "type": "text",
@@ -254,6 +287,7 @@
           "type": "node",
           "is": "vuln",
           "name": "SQLI",
+          "description": "",
           "choice": [
             {
               "type": "text",
@@ -279,6 +313,7 @@
           "type": "node",
           "is": "vuln",
           "name": "NOSQLI",
+          "description": "",
           "choice": [
             {
               "type": "text",
@@ -295,6 +330,7 @@
           "type": "node",
           "is": "vuln",
           "name": "XSS Injection",
+          "description": "",
           "choice": [
             {
               "type": "text",
@@ -306,6 +342,23 @@
                 "<p style=\"animation: x;\" onanimationstart=\"alert()\">XSS</p>",
                 "<SCRscriptIPT>alert(1)</SCRscriptIPT>"
               ]
+            },
+            {
+              "type": "node",
+              "is": "vuln",
+              "name": "DOM Clobbering",
+              "description": "",
+              "choice": [
+                {
+                  "type": "url",
+                  "urls": [
+                    {
+                      "text": "Port Swigger",
+                      "url": "https://portswigger.net/web-security/dom-based/dom-clobbering"
+                    }
+                  ]
+                }
+              ]
             }
           ]
         },
@@ -313,6 +366,7 @@
           "type": "node",
           "is": "vuln",
           "name": "Request Smuggling",
+          "description": "",
           "choice": [
             {
               "type": "url",
@@ -333,6 +387,7 @@
           "type": "node",
           "is": "vuln",
           "name": "Deserialization",
+          "description": "",
           "choice": [
             {
               "type": "url",
