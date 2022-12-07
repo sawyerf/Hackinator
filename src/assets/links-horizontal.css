@@ -4,17 +4,17 @@
     --link-size: 5px;
 }
 
-/* * {
-    position: relative;
-    margin: 0;
-    padding: 0;
+.parent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+}
 
-    border: 0 none;
-
-    -webkit-transition: all ease .4s;
-    -moz-transition: all ease .4s;
-    transition: all ease .4s;
-} */
+.child {
+    display: flex;
+    flex-direction: row;
+}
 
 .diagram {
     width: 100vw;

@@ -54,6 +54,7 @@ div.block-text {
     background-color: lightgrey;
     width: 25ch;
     min-height: 3em;
+    max-width: 25ch;
     border: solid 5px black;
     border-radius: 10px;
 }
@@ -124,16 +125,4 @@ a.block-url {
     width: calc(100% - 2ex - 1.9ex * 2);
     height: 2ex;
     text-align: center;
-}
-
-.parent {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    align-content: center;
-}
-
-.child {
-    display: flex;
-    flex-direction: row;
 }
