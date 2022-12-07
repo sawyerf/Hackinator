@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import diagramData from './data/diagram.json'
 import { BlockNodeType, BlockType } from './data/diagram';
 import Diagram from './components/Diagram';
-import ListNextNode from './components/ListNextNode';
+import Information from './components/Information';
 
 
 const App = () => {
@@ -12,7 +12,7 @@ const App = () => {
   return (
     <div className="App">
       <Diagram diagramData={data} setSelect={setNode}/>
-      <ListNextNode nodes={node.choice} setSelect={setNode}/>
+      <Information node={node} setSelect={setNode}/>
     </div>
   )
 }

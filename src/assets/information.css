@@ -1,0 +1,18 @@
+.nextNode {
+    /* background-color: green; */
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+.information {
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin: 2em;
+    background-color: blue;
+    border-radius: 1em;
+}
+
+.info-current {
+    margin: 1em;
+}

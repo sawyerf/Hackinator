@@ -1,0 +1,121 @@
+:root {
+    --left-size: 40px;
+    --link-color: black;
+    --link-size: 5px;
+}
+
+.parent {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+}
+
+.child {
+    display: flex;
+    flex-direction: column;
+}
+
+.diagram {
+    width: 100vw;
+   height: 100vh;
+    background-color: red;
+    overflow: scroll;
+    min-width: auto;
+}
+
+.diagram .child {
+    position: relative;
+    padding-left: var(--left-size);
+}
+
+.diagram .parent {
+    position: relative;
+    padding: var(--left-size);
+    padding-right: 0px;
+    float: bottom;
+
+    text-align: center;
+    list-style-type: none;
+}
+
+.diagram .parent::before,
+.diagram .parent::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 50%;
+    width: var(--left-size);
+    border-left: var(--link-size) solid var(--link-color);
+}
+
+.diagram .parent::after {
+    bottom: 0;
+    top: auto;
+
+    border-top: var(--link-size) solid var(--link-color);
+}
+
+.diagram .parent:only-child::after,
+.diagram .parent:only-child::before {
+    content: '';
+    display: none;
+}
+
+.diagram .parent:only-child {
+    padding-left: 0;
+}
+
+.diagram .parent:first-child::before,
+.diagram .parent:last-child::after {
+    border: 0 none;
+}
+
+.diagram .parent:last-child::before {
+    border-bottom: var(--link-size) solid var(--link-color);
+    border-radius: 0 var(--link-size) 0 0;
+}
+
+.diagram .parent:first-child::after {
+    border-radius: var(--link-size) 0 0 0;
+}
+
+.diagram .child .child::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 50%;
+    border-bottom: var(--link-size) solid var(--link-color);
+    height: 0;
+    width: var(--left-size);
+}
+
+/* .diagram .parent .block {
+    display: inline-block;
+    padding: 5px 10px;
+
+    border-radius: 5px;
+    border: var(--link-size) solid blue;
+
+    text-decoration: none;
+    text-transform: uppercase;
+    color: blue;
+    font-family: arial, verdana, tahoma;
+    font-size: 11px;
+} */
+
+/* .diagram .parent .block:hover,
+.diagram .parent .block:hover+.child .parent .block {
+    color: purple;
+    background: purple;
+    border: var(--link-size) solid purple;
+}
+
+.diagram .parent .block:hover+.child .parent::after,
+.diagram .parent .block:hover+.child .parent::before,
+.diagram .parent .block:hover+.child::before,
+.diagram .parent .block:hover+.child ul::before {
+    content: '';
+    border-color: pink;
+} */
