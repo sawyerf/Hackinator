@@ -11,8 +11,8 @@ const TextBlock = (props: TextProps) => {
     return (
         <div className='block block-text'>
             {
-                props.text.map(line => (
-                    <li className='block-text'>
+                props.text.map((line, key) => (
+                    <li className='block-text' key={key}>
                         <p className='block-text' > { line } </p>
                         <div className='copy' onClick={() => copyLine(line)} />
                     </li>

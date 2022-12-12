@@ -12,43 +12,43 @@ type DiagramProps = {
 
 const Diagram = (props: DiagramProps) => {
 
-	const typeIdentifier = (block: BlockType): JSX.Element => {
+	const typeIdentifier = (block: BlockType, key: number): JSX.Element => {
 		if (block.type === 'node') {
-			return parseNode(block as BlockNodeType);
+			return parseNode(block as BlockNodeType, key);
 		} else if (block.type === 'text') {
-			return parseText(block as BlockTextType)
+			return parseText(block as BlockTextType, key)
 		} else if (block.type === 'url') {
-			return parseUrl(block as BlockUrlType)
+			return parseUrl(block as BlockUrlType, key)
 		} else {
 			return (<></>)
 		}
 	}
 
-	const parseUrl = (block: BlockUrlType): JSX.Element => {
+	const parseUrl = (block: BlockUrlType, key: number): JSX.Element => {
 		return (
-			<div className='parent'>
+			<div className='parent' key={key}>
 				<UrlBlock urls={block.urls} />
 			</div>
 		)
 	}
 
-	const parseText = (block: BlockTextType): JSX.Element => {
+	const parseText = (block: BlockTextType, key: number): JSX.Element => {
 		return (
-			<div className='parent'>
+			<div className='parent' key={key}>
 				<TextBlock text={block.text} />
 			</div >
 		)
 	}
 
-	const parseNode = (block: BlockNodeType): JSX.Element => {
+	const parseNode = (block: BlockNodeType, key: number): JSX.Element => {
 		return (
-			<div className='parent'>
+			<div className='parent' key={key}>
 				<div onClick={ () => props.setSelect(block) } >
 					<NodeBlock name={block.name} type={block.is} />
 				</div>
 				<div className='child'>
 					{
-						block.choice.map(choice => typeIdentifier(choice))
+						block.choice.map((choice, key) => typeIdentifier(choice, key))
 					}
 				</div>
 			</div>
@@ -60,7 +60,7 @@ const Diagram = (props: DiagramProps) => {
       <Space>
         <div className='parent'>
           <div className='child'>
-            {typeIdentifier(props.diagramData)}
+            {typeIdentifier(props.diagramData, 0)}
           </div>
         </div>
       </Space>
