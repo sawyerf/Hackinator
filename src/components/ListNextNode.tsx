@@ -1,5 +1,5 @@
 import React from 'react';
-import { BlockNodeType, BlockTextType, BlockUrlType, BlockType } from '../data/diagram';
+import { BlockNodeType, BlockType } from '../data/diagram';
 import NodeBlock from './NodeBlock';
 
 
@@ -20,7 +20,7 @@ const ListNextNode = (props: ListNextNodeProps) => {
             props.setSelect(node);
           }}
           key={key}>
-					<NodeBlock name={node.name} type={node.is} />
+					<NodeBlock name={node.name} type={node.is} isDiagram={false} />
 				</div>
 			)
 		}

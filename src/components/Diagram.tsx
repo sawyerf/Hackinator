@@ -44,7 +44,7 @@ const Diagram = (props: DiagramProps) => {
 		return (
 			<div className='parent' key={key}>
 				<div onClick={ () => props.setSelect(block) } >
-					<NodeBlock name={block.name} type={block.is} />
+					<NodeBlock name={block.name} type={block.is} isDiagram={true} />
 				</div>
 				<div className='child'>
 					{
