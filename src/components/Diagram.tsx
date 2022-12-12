@@ -5,12 +5,12 @@ import UrlBlock from './UrlBlock';
 import { BlockNodeType, BlockTextType, BlockType, BlockUrlType } from '../data/diagram';
 import { Space } from 'react-zoomable-ui';
 
-type DigriamProps = {
+type DiagramProps = {
 	diagramData: BlockNodeType;
 	setSelect: React.Dispatch<React.SetStateAction<BlockNodeType>>;
 }
 
-const Diagram = (props: DigriamProps) => {
+const Diagram = (props: DiagramProps) => {
 
 	const typeIdentifier = (block: BlockType): JSX.Element => {
 		if (block.type === 'node') {
