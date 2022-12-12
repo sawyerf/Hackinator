@@ -8,8 +8,8 @@ const UrlBlock = (props: UrlProps) => {
     return (
         <div className='block block-url'>
             {
-                props.urls.map(url => (
-                    <a className='block-url' href ={url.url} > { url.text } </a>
+                props.urls.map((url, key) => (
+                    <a className='block-url' href ={url.url} key={key}> { url.text } </a>
                 ))
             }
         </div>

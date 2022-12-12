@@ -20,7 +20,7 @@
     width: 100vw;
     height: 100vh;
     background-color: red;
-    overflow: scroll;
+    overflow: hidden;
     min-height: auto;
 }
 

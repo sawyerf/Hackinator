@@ -1,5 +1,22 @@
+body { 
+  cursor: grab;
+  overflow: hidden;
+  position: relative
+}
 .block {
     flex: 1;
+}
+
+html,
+body,
+#root {
+  cursor: grab;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+#root {
+  position: relative;
 }
 
 div.block-node {
@@ -21,7 +38,7 @@ p.block-node {
 }
 
 div.block-type-master {
-    background: red;
+  background: red;
 }
 
 p.block-type-master {
